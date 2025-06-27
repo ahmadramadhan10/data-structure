@@ -1,19 +1,17 @@
 package stack
 
-import "fmt"
-
 type Node struct {
 	Val          int
 	Next, Before *Node
 }
 
-type LinkedList struct {
+type Stack struct {
 	head *Node
 	tail *Node
 	size int
 }
 
-func (l *LinkedList) push(val int) {
+func (l *Stack) push(val int) {
 	newNode := &Node{Val: val, Next: nil, Before: nil}
 	if l.tail == nil {
 		l.tail = newNode
@@ -28,7 +26,7 @@ func (l *LinkedList) push(val int) {
 	}
 }
 
-func (l *LinkedList) pop() {
+func (l *Stack) pop() {
 	if l.head != nil {
 		l.head = l.head.Before
 		l.head.Next = nil
@@ -36,17 +34,6 @@ func (l *LinkedList) pop() {
 	}
 }
 
-func main() {
-	linkedlist := LinkedList{}
-	linkedlist.push(5)
-	linkedlist.push(10)
-	linkedlist.pop()
-	linkedlist.push(9)
-	cur := linkedlist.tail
-	for cur != nil {
-		fmt.Println(cur.Val)
-		cur = cur.Next
-	}
+func (l *Stack) top() int {
+	return l.head.Val
 }
-
-// berarti pada linked list ketika update menggunakan O(n)
